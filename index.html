@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Truck Mileage Report</title>
+    
+    <!-- Colore tema -->
+    <meta name="theme-color" content="#2563eb">
+    <meta name="description" content="Resoconto Chilometri per conteggio accise">
+    
+    <!-- Supporto iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="CamionKm">
+    <link rel="apple-touch-icon" href="https://img.icons8.com/fluency/512/semi-truck.png">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="https://img.icons8.com/fluency/96/semi-truck.png" />
+    
+    <!-- Manifest PWA -->
+    <link rel="manifest" href="./manifest.json">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      @media print {
+        body {
+          -webkit-print-color-adjust: exact !important;
+          print-color-adjust: exact !important;
+          background: white;
+        }
+        .container {
+          width: 100%;
+          max-width: 100%;
+          padding: 0;
+          margin: 0;
+        }
+        table {
+          width: 100%;
+          border-collapse: collapse;
+          font-size: 9pt;
+        }
+        tr, td, th {
+          page-break-inside: avoid;
+        }
+        thead {
+          display: table-header-group;
+        }
+        tfoot {
+          display: table-row-group; /* Evita ripetizione su ogni pagina e posizionamento errato */
+        }
+        .bg-gray-50 { background-color: #f9fafb !important; }
+        .bg-gray-100 { background-color: #f3f4f6 !important; }
+        .bg-gray-200 { background-color: #e5e7eb !important; }
+        .bg-sky-50 { background-color: #f0f9ff !important; }
+        .bg-white { background-color: #ffffff !important; }
+        .text-red-600 { color: #dc2626 !important; }
+        .text-blue-800 { color: #1e40af !important; }
+        .border-gray-200 { border-color: #e5e7eb !important; }
+        .border-gray-300 { border-color: #d1d5db !important; }
+      }
+      @page {
+        size: A4 portrait; /* Impostato verticale */
+        margin: 10mm;
+      }
+    </style>
+<script type="importmap">
+{
+  "imports": {
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "vite": "https://aistudiocdn.com/vite@^7.2.2",
+    "@vitejs/plugin-react": "https://aistudiocdn.com/@vitejs/plugin-react@^5.1.1"
+  }
+}
+</script>
+</head>
+  <body class="bg-gray-50 print:bg-white overscroll-none">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+    
+    <!-- Registrazione Service Worker -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          // Usiamo ./sw.js (relativo) invece di /sw.js (assoluto) per evitare problemi di origine
+          navigator.serviceWorker.register('./sw.js')
+            .then((registration) => {
+              console.log('SW registrato con successo:', registration.scope);
+            })
+            .catch((err) => {
+              console.log('Registrazione SW fallita (potrebbe essere bloccata dal preview environment):', err);
+            });
+        });
+      }
+    </script>
+  </body>
+</html>

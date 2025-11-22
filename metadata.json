@@ -1,0 +1,5 @@
+{
+  "name": "AcciseKm1.4",
+  "description": "An application to track and calculate truck mileage per quarter for fuel excise duty recovery purposes. Users can add trucks, input quarterly odometer readings, and print a summary report.",
+  "requestFramePermissions": []
+}
